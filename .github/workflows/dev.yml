@@ -22,10 +22,11 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SECRET_KEY }}
           port: 22
-          script: |
-            cd codes/
-            git checkout develop
-            git pull origin develop
-            git status
-            docker-compose -f docker-compose.dev.yml build
-            docker-compose -f docker-compose.dev.yml up -d
+          script: whoami
+          # script: |
+          #   cd codes/
+          #   git checkout develop
+          #   git pull origin develop
+          #   git status
+          #   docker-compose -f docker-compose.dev.yml build
+          #   docker-compose -f docker-compose.dev.yml up -d
