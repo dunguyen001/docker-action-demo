@@ -24,7 +24,8 @@ jobs:
           port: 22
           script: |
             cd codes/
-            git pull origin master
+            git checkout develop
+            git pull origin develop
             git status
             docker-compose -f docker-compose.dev.yml build
             docker-compose -f docker-compose.dev.yml up -d
