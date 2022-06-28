@@ -17,11 +17,11 @@ jobs:
     steps:
       - name: Prepare SSH to work with the remote server
         run: |
-          cat "${{ secrets.KEY }}"
+          cat ${{ secrets.KEY }}
           ssh-add -
           chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa.pub
-          echo "SECRET_KEY ${{ secrets.KEY }}"
-          ssh -o StrictHostKeyChecking=no -T "${{ secrets.USERNAME }}@${{ secrets.HOST }}"
+          echo SECRET_KEY ${{ secrets.KEY }}
+          ssh -o StrictHostKeyChecking=no -T ${{ secrets.USERNAME }}@${{ secrets.HOST }}
       - name: deploy to EC2
         uses: easingthemes/ssh-deploy@main
         env:
