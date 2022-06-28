@@ -17,7 +17,6 @@ jobs:
     steps:
       - name: Prepare SSH to work with the remote server
         run: |
-          eval $(ssh-agent -s)
           cat "${{ secrets.KEY }}"
           ssh-add -
           chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa.pub
