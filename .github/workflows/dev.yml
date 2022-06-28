@@ -15,13 +15,6 @@ jobs:
     name: deploy-ec2
     runs-on: ubuntu-latest
     steps:
-      - name: Prepare SSH to work with the remote server
-        run: |
-          cat ${{ secrets.KEY }}
-          ssh-add -
-          chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa.pub
-          echo SECRET_KEY ${{ secrets.KEY }}
-          ssh -o StrictHostKeyChecking=no -T ${{ secrets.USERNAME }}@${{ secrets.HOST }}
       - name: deploy to EC2
         uses: easingthemes/ssh-deploy@main
         env:
