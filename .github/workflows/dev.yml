@@ -13,19 +13,19 @@ jobs:
         run: echo ${{ secrets.USERNAME }}
   deploy:
     deploy-ec2:
-      name: deploy to EC2
       runs-on: ubuntu-latest
       steps: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SECRET_KEY }}
-        port: 22
-        script:
-          cd codes/
-          git pull origin master
-          git status
-          docker-compose -f docker-compose.dev.yml build
-          docker-compose -f docker-compose.dev.yml up -d
+        - name: deploy to EC2
+          with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            key: ${{ secrets.SECRET_KEY }}
+            port: 22
+            script:
+              cd codes/
+              git pull origin master
+              git status
+              docker-compose -f docker-compose.dev.yml build
+              docker-compose -f docker-compose.dev.yml up -d
 
 
