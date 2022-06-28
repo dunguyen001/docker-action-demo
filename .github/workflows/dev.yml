@@ -11,18 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: deploy to EC2
-        uses: burnett01/rsync-deployments@5.1
+        uses: appleboy/ssh-action@master
         with:
-          switches: -avzr --delete
-          path: ./*
-          remote_path: /codes
-          remote_host: ${{ secrets.HOST }}
-          remote_user: ${{ secrets.USERNAME }}
-          remote_key: "${{ secrets.KEY }}"
-          # script: |
-          #   cd codes/
-          #   git checkout develop
-          #   git pull origin develop
-          #   git status
-          #   docker-compose -f docker-compose.dev.yml build
-          #   docker-compose -f docker-compose.dev.yml up -d
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: "${{ secrets.KEY }}"
+          script: |
+            cd codes/
+            git checkout develop
+            git pull origin develop
+            git status
+            docker-compose -f docker-compose.dev.yml build
+            docker-compose -f docker-compose.dev.yml up -d
