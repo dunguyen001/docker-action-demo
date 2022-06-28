@@ -22,7 +22,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SECRET_KEY }}
           port: 22
-          script: cd codes/
+          script: |
+            cd codes/
             git pull origin master
             git status
             docker-compose -f docker-compose.dev.yml build
