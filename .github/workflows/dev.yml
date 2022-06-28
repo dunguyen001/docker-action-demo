@@ -3,10 +3,10 @@ name: build
 jobs:
   build:
     name: build
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@develop
       - name: docker-compose -f docker-compose.dev.yml build
-        with:
-          args: build
-      - name: docker-compose -f docker-compose.dev.yml up -d
+        run: echo Hello, world!
+
+      # - name: docker-compose -f docker-compose.dev.yml up -d
