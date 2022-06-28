@@ -1,19 +1,13 @@
-on: push
+on: 
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
 name: build
 jobs:
-  # build:
-  #   name: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: docker compose build dev
-  #       run: docker-compose -f docker-compose.dev.yml build
-
-  #     - name: echo env
-  #       run: echo ${{ secrets.USERNAME }}
   deploy:
     name: deploy-ec2
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
       - name: deploy to EC2
