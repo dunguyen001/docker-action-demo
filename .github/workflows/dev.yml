@@ -9,4 +9,5 @@ jobs:
       - name: docker compose build dev
         run: docker-compose -f docker-compose.dev.yml build
 
-      # - name: docker-compose -f docker-compose.dev.yml up -d
+      - name: echo env
+        run: echo ${{ secrets.USERNAME }}
