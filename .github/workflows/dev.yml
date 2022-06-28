@@ -14,8 +14,9 @@ jobs:
   deploy:
     deploy-ec2:
       runs-on: ubuntu-latest
-      steps: appleboy/ssh-action@master
+      steps:
         - name: deploy to EC2
+          uses: appleboy/ssh-action@master
           with:
             host: ${{ secrets.HOST }}
             username: ${{ secrets.USERNAME }}
