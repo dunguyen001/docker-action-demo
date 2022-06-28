@@ -1,29 +1,30 @@
 on: push
 name: build
 jobs:
-  build:
-    name: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: docker compose build dev
-        run: docker-compose -f docker-compose.dev.yml build
+  # build:
+  #   name: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: docker compose build dev
+  #       run: docker-compose -f docker-compose.dev.yml build
 
-      - name: echo env
-        run: echo ${{ secrets.USERNAME }}
+  #     - name: echo env
+  #       run: echo ${{ secrets.USERNAME }}
   deploy:
     name: deploy-ec2
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: deploy to EC2
-        uses: easingthemes/ssh-deploy@main
-        env:
-          REMOTE_HOST: ${{ secrets.HOST }}
-          REMOTE_USER: ${{ secrets.USERNAME }}
-          SSH_PRIVATE_KEY: ${{ secrets.KEY }}
-          # port: 22
-          script: |
-            whoami
+        uses: burnett01/rsync-deployments@5.1
+        with:
+          switches: -avzr --delete
+          path: ./*
+          remote_path: /codes
+          remote_host: ${{ secrets.HOST }}
+          remote_user: ${{ secrets.USERNAME }}
+          remote_key: "${{ secrets.KEY }}"
           # script: |
           #   cd codes/
           #   git checkout develop
