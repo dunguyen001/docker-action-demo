@@ -3,11 +3,12 @@ on:
     branches: [develop]
   pull_request:
     branches: [develop]
-name: build
+name: deploy to ec2
 jobs:
   deploy:
     name: deploy-ec2
     runs-on: self-hosted
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
       - name: check user
