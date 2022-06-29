@@ -13,6 +13,7 @@ jobs:
 
       - name: check
         run: ssh -i ${{ secrets.KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }}
+      - name: check user
         run: whoami
 
       # - name: Copy repository contents via scp
