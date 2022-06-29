@@ -10,9 +10,6 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
-
-      - name: check
-        run: ssh -i ${{ secrets.KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }}
       - name: check user
         run: whoami
 
