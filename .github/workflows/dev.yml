@@ -27,7 +27,7 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
-          PORT: ${{ secrets.PORT }}
+          PORT: 22
           KEY: "${{ secrets.KEY }}"
           script: |
             git checkout develop
